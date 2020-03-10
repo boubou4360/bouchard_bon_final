@@ -45,8 +45,65 @@ $query1->the_post();
 wp_reset_postdata();
 
 
-    
+
 ?>
+
+        <div class="container">
+            <?php
+                
+                    
+             $query2 = new WP_Query( $args2 );
+
+          
+
+
+            $args2 = array(
+               "category_name" => "cours",
+               "posts_per_page" => 30 ,
+               "order"=>"ASC",
+               "orderby" => 'title'
+            
+            );
+               
+               
+             
+               echo '<div class="oGrid" style="background-color:white; ">';
+                // The 2nd Loop
+                
+                
+                while (have_posts()) {
+                   the_post();
+
+			        
+                    $oSession = substr(get_the_title(),4,1);
+                    $oDomaine = substr(get_the_title(),5,1);
+
+                    
+                    
+                    switch($oMois%9){
+                    case 0:echo "<div style='grid-area:".$oSession."/".($oDomaine)."/".($oSession)."/".($oDomaine)." >" ;
+                
+                    echo "<p>" . get_the_title() ." - ".get_the_title(). " - ".get_the_title() ."</p>";
+                    echo "<p>".get_the_title()."</p>";
+                    echo "</div>";
+                    break;
+
+                    
+                    
+                    
+
+                 
+                    }
+                    
+                    }
+                           
+                echo '</div>';
+                
+            ?>
+        </div>
+    
+    
+
 </main>
 </div>
 
