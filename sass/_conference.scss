@@ -1,0 +1,31 @@
+img {
+ width: 50%;
+ height: 50%;
+    
+    
+}
+
+h4{
+    color: yellow;
+}
+
+
+
+.divConference h4{
+    position: absolute;
+    left:14%;
+
+}
+
+.divConference p{
+    display: inline-block;
+    margin-left: 2%;
+    width: 35%;
+    height:100px;
+    padding-top:3%;
+}
+
+.divConference img{
+    float: left;
+    clear: both;
+}

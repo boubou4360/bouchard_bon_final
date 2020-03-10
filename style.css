@@ -1,0 +1,553 @@
+@charset "UTF-8";
+/*
+ Theme Name:   astral Child
+ Theme URI:    http://example.com/astral-child/
+ Description:  astral Child Theme
+ Author:       John Doe
+ Author URI:   http://example.com
+ Template:     astral
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  astralchild
+*/
+/* ----------------------------------------- */
+/* ------  Un premier exemple de mixin ----- */
+/* ----------------------------------------- */
+/* ---------------------------------------- */
+/* ---------------------------------------- */
+.modal-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: black;
+  opacity: 0.9;
+}
+
+/*
+  Le resultat CSS produit par SCSS
+
+  .modal-background {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: black;
+        opacity: 0.9;
+}
+
+*/
+/* ---------------------------------------------------------------------------------------------------------------------
+Réutilisabilité
+------------------------------------------------------------------------------------------------------------------------
+Le but principal d'un mixin est de rendre un ensemble de propriétés réutilisables.
+Comme les variables Sass (où vous définissez vos valeurs sur un seul emplacement), 
+les mixins Sass vous permettent de définir des propriétés sur un seul emplacement.
+Le mixin précédent peut être réutilisé dans d'autres règles:
+------------------------------------------------------------------------------------------------------------------------ */
+.modal-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.product-link {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.image-pattern {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* ------------------------------------------------------------------------------  
+Paramètres
+--------------------------------------------------------------------------------- 
+Les mixins étant des fonctions on peut y intégrer des paramètres, 
+Par exemple, on peut généraliser la propriété border-radius pour 
+l'adapter à plusieurs navigateurs.
+-------------------------------------------------------------------------------- */
+.box {
+  border-radius: 3px;
+}
+
+/*----------------------------------------------------------------------------------- 
+Paramètres facultatifs
+-------------------------------------------------------------------------------------
+Si vous souhaitez qu'un paramètre ait une valeur par défaut tout en offrant la possibilité
+d'en définir un occasionnellement, vous pouvez créer des paramètres facultatifs:
+------------------------------------------------------------------------------------- */
+/* Utilisation du mixin */
+div.highlighter-rouge {
+  position: relative;
+}
+
+div.highlighter-rouge:before {
+  background: #aaa;
+  color: rgba(0, 0, 0, 0.5);
+  content: "Code";
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  height: 1rem;
+  left: 0;
+  letter-spacing: 0.1em;
+  line-height: 1rem;
+  padding: 0 0.5em;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
+}
+
+div.highlighter-rouge.css {
+  position: relative;
+}
+
+div.highlighter-rouge.css:before {
+  background: #0ff;
+  color: white;
+  content: "CSS";
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  height: 1rem;
+  left: 0;
+  letter-spacing: 0.1em;
+  line-height: 1rem;
+  padding: 0 0.5em;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
+}
+
+div.highlighter-rouge.scss {
+  position: relative;
+}
+
+div.highlighter-rouge.scss:before {
+  background: #c69;
+  color: white;
+  content: "SCSS";
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  height: 1rem;
+  left: 0;
+  letter-spacing: 0.1em;
+  line-height: 1rem;
+  padding: 0 0.5em;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
+}
+
+/*
+    Permet de définir un pseudo élément
+*/
+/*
+    Voici un exemple d'utilisation sans aucun argument 
+    (vous verrez également ce mixin utilisé dans certains de nos 
+    autres mixins ci-dessous également).
+*/
+div.mon_pseudo {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #aaa;
+}
+
+div.mon_pseudo::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #0f0;
+}
+
+/*
+Ce mixin élimine tous les tracas de la création d'un HTML/CSS triangle 
+que vous verrez  apparaître dans la plupart des info-bulles traditionnelles, 
+le tout sans images, vous spécifiez simplement sa couleur, la taille que vous voulez, 
+la direction vers laquelle il pointera et c'est fait!
+*/
+.mon_triangle {
+  content: "";
+  display: block;
+  position: absolutr;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #0f0;
+  margin-right: -10px;
+}
+
+/* ------------------------------------------------------------------------------ */
+/*  @content                                                                      */
+/* ------------------------------------------------------------------------------ */
+/* @content permet l'extension d'un Mixin. Nous pouvons passer un bloc de code css
+   à un Mixins avec l'utilisation de @content. En bref, @content rend cela possible.
+
+   grid() est un mixin qu'on va étendre avec @content
+*/
+/* @content permet d'intégrer du code de plus */
+/*
+Et maintenant, notre grille Mixin peut prendre du code CSS intégré. 
+Un exemple de cas d'utilisation est celui des media queries. 
+Voici un exemple
+*/
+/* 
+le menu est contrôlé par une case à cocher
+l'état checked est testé ici:
+*/
+#checkMenu:checked ~ ul {
+  max-height: 200px;
+}
+
+#checkMenu:checked ~ ul > li {
+  opacity: 1;
+}
+
+#checkMenu:checked ~ #btnMenu {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  color: #0f0;
+}
+
+#checkMenu {
+  display: none;
+}
+
+#btnMenu {
+  display: block;
+  color: #fff;
+  font-size: 2em;
+  -webkit-transform-origin: 50% 60%;
+          transform-origin: 50% 60%;
+  position: absolute;
+  width: 30px;
+  height: 32px;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+  left: 10px;
+  top: 5px;
+  cursor: pointer;
+}
+
+#menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 110px;
+  background-color: #381717;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: 40px;
+}
+
+#menu ul {
+  width: 100vw;
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  margin-top: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  list-style-type: none;
+  max-height: 0px;
+  height: auto;
+  -webkit-transition: max-height 1s;
+  transition: max-height 1s;
+  background-color: #381717;
+  overflow: hidden;
+}
+
+#menu ul li {
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+
+#menu ul li a {
+  text-decoration: none;
+  display: block;
+  padding: 6px 3px 3px 30px;
+  color: #b3afaf;
+}
+
+#menu ul li a:hover {
+  background-color: #a44444;
+  color: #fff;
+}
+
+#menu ul li a:last-child {
+  padding-bottom: 15px;
+}
+
+@media screen and (min-width: 500px) {
+  #btnMenu {
+    display: none;
+  }
+  #menu {
+    position: static;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  #menu ul {
+    height: 26px;
+    margin: 0;
+    margin-left: 2%;
+    overflow: visible;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    opacity: 1;
+  }
+  #menu ul li {
+    opacity: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    text-align: center;
+    vertical-align: center;
+  }
+  #menu ul li a {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    height: 26px;
+    padding-top: 11px;
+  }
+  #menu ul li a:hover {
+    background-color: #803535;
+  }
+}
+
+img {
+  width: 50%;
+  height: 50%;
+}
+
+h4 {
+  color: yellow;
+}
+
+.divConference h4 {
+  position: absolute;
+  left: 14%;
+}
+
+.divConference p {
+  display: inline-block;
+  margin-left: 2%;
+  width: 35%;
+  height: 100px;
+  padding-top: 3%;
+}
+
+.divConference img {
+  float: left;
+  clear: both;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1b97b6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #d8d8d8 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+
+li a:hover {
+  color: #34d6ff !important;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  letter-spacing: 1px;
+}
+
+li a:hover:after {
+  content: "";
+  /* This is necessary for the pseudo element to work. */
+  display: block;
+  /* This will put the pseudo element on its own line. */
+  margin: 0 auto;
+  /* This will center the border. */
+  width: 95%;
+  /* Change this to whatever width you want. */
+  /* This creates some space between the element and the border. */
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+  padding-top: 1%;
+  border-bottom: 1px solid white;
+  /* This creates the border. Replace black with whatever color you want. */
+}
+
+li a {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  padding: 0 !important;
+}
+
+li a:after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 0%;
+  border-bottom: 1px solid white;
+  padding-top: 1%;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+p {
+  font-weight: bold;
+}
+
+body {
+  overflow: auto;
+}
+
+.animation1 {
+  -webkit-animation: animationRectangle1;
+          animation: animationRectangle1;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  text-align: center;
+  border-radius: 25px;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.divConference {
+  background-color: white !important;
+}
+
+.divConference h4 {
+  position: absolute;
+  left: 12%;
+}
+
+.divConference p {
+  display: inline-block;
+  margin-left: 2%;
+  width: 35%;
+  height: 180px;
+  padding-top: 3%;
+}
+
+.divConference img {
+  float: left;
+  clear: both;
+}
+
+.oFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.oPost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@-webkit-keyframes animationRectangle1 {
+  from {
+    -webkit-transform: translateX(-1500px);
+            transform: translateX(-1500px);
+    opacity: 0;
+    background-color: transparent;
+  }
+  to {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes animationRectangle1 {
+  from {
+    -webkit-transform: translateX(-1500px);
+            transform: translateX(-1500px);
+    opacity: 0;
+    background-color: transparent;
+  }
+  to {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.oGrid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.octobre {
+  border: 1px solid black;
+  background-color: yellow;
+}
+
+.septembre {
+  border: 1px solid black;
+  background-color: cyan;
+}
+
+.novembre {
+  border: 1px solid black;
+  background-color: red;
+}
+/*# sourceMappingURL=style.css.map */
