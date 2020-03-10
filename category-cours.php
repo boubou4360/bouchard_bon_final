@@ -2,9 +2,9 @@
 
 get_header();
 ?>
-<div id="primary" class="content-area">
+<div id="" class="content-area">
 <main id="main" class="site-main" style="width:80%; background-color:red; margin-left:10%;">
-<div id="primary" class="content-area" ;>
+
     <?php
     
 	while ( have_posts() ) :
@@ -18,9 +18,10 @@ get_header();
 
     $args = array(
         "category_name" => "cours",
-        "posts_per_page" => 10,
-        "orderby" => 'date',
-        "order"=>"ASC"
+        "posts_per_page" => 30,
+        "order"=>"asc",
+        "orderby" => 'title'
+        
     );
     $query1 = new WP_Query( $args );
 
